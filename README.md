@@ -1,4 +1,4 @@
-# quarkus-microservice project
+# Quarkus Microservice Example Project
 
 This project uses Quarkus, the Supersonic Subatomic Java Framework.
 
@@ -33,3 +33,68 @@ Or, if you don't have GraalVM installed, you can run the native executable build
 You can then execute your native executable with: `./build/quarkus-microservice-1.0.0-SNAPSHOT-runner`
 
 If you want to learn more about building native executables, please consult https://quarkus.io/guides/gradle-tooling#building-a-native-executable.
+
+## Install GraalVM using [SdkMan](https://sdkman.io/)
+
+```
+sdk list java | grep grl
+sdk install java x.y.z-grl
+```
+
+Install `native-image`:
+```
+gu install native-image
+```
+
+## Developer commands
+
+Run as developer:
+```
+make run
+```
+
+Compile jar:
+```
+make compile
+```
+
+Run test:
+```
+make test
+```
+
+## Native commands
+
+Compile native image:
+```
+make compile-native
+```
+
+Run native image:
+```
+make run-native
+```
+
+Run tests as native image:
+```
+make test-native
+```
+
+## Docker commands
+
+Run jvm docker:
+```
+make docker-run
+```
+
+Run native image docker:
+```
+make docker-run-native
+```
+
+## Other commands
+
+Hit default endpoint
+```
+make greetings
+```

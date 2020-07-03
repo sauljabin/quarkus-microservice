@@ -4,14 +4,20 @@ plugins {
 }
 
 repositories {
-     mavenLocal()
-     mavenCentral()
+    mavenLocal()
+    mavenCentral()
 }
 
 dependencies {
     implementation 'io.quarkus:quarkus-resteasy-jsonb'
     implementation enforcedPlatform("${quarkusPlatformGroupId}:${quarkusPlatformArtifactId}:${quarkusPlatformVersion}")
     implementation 'io.quarkus:quarkus-resteasy'
+
+    compileOnly 'org.projectlombok:lombok:1.18.12'
+    annotationProcessor 'org.projectlombok:lombok:1.18.12'
+
+    testCompileOnly 'org.projectlombok:lombok:1.18.12'
+    testAnnotationProcessor 'org.projectlombok:lombok:1.18.12'
 
     testImplementation 'io.quarkus:quarkus-junit5'
     testImplementation 'io.rest-assured:rest-assured'
@@ -36,4 +42,8 @@ java {
 
 test {
     systemProperty "java.util.logging.manager", "org.jboss.logmanager.LogManager"
+    testLogging {
+        events 'passed', 'skipped', 'failed'
+        exceptionFormat = 'full'
+    }
 }
