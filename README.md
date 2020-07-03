@@ -46,6 +46,10 @@ Install `native-image`:
 gu install native-image
 ```
 
+## Install Minikube 
+
+Read [this](https://minikube.sigs.k8s.io/docs/start/)
+
 ## Developer commands
 
 Run as developer:
@@ -96,5 +100,15 @@ make docker-run-native
 
 Hit default endpoint
 ```
-make greetings
+make hit-greetings
+```
+
+Deploy a kubernetes services:
+```
+make deployment
+```
+
+Hit kubernetes service:
+```
+make hit-k8s-greetings
 ```

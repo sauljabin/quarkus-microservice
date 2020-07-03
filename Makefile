@@ -16,7 +16,7 @@ compile:
 compile-native:
 	./gradlew build -Dquarkus.package.type=native
 
-greetings:
+hit-greetings:
 	curl -s http://localhost:8080/greetings | python -m json.tool
 
 docker-compile: compile
@@ -30,3 +30,10 @@ docker-compile-native: compile-native
 
 docker-run-native: docker-compile-native
 	docker run -i --rm -p 8080:8080 quarkus/quarkus-microservice
+
+deployment:
+	eval $$(minikube docker-env) && make docker-compile-native
+	kubectl apply -f kubernetes/quarkus-microservice.yml
+
+hit-k8s-greetings:
+	curl -s $(shell minikube service --url quarkus-microservice-service)/greetings | python -m json.tool
