@@ -112,3 +112,13 @@ Hit kubernetes service:
 ```
 make hit-k8s-greetings
 ```
+
+Continuous hit to k8s:
+```
+make check-k8s-balancing
+```
+
+List pods:
+```
+make watch-k8s-pods 
+```

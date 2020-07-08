@@ -11,10 +11,10 @@ test-native:
 	./gradlew testNative
 
 compile:
-	./gradlew quarkusBuild
+	./gradlew clean quarkusBuild
 
 compile-native:
-	./gradlew build -Dquarkus.package.type=native
+	./gradlew clean build -Dquarkus.package.type=native
 
 hit-greetings:
 	curl -s http://localhost:8080/greetings | python -m json.tool
@@ -37,3 +37,9 @@ deployment:
 
 hit-k8s-greetings:
 	curl -s $(shell minikube service --url quarkus-microservice-service)/greetings | python -m json.tool
+
+check-k8s-balancing:
+	while true; do curl -s $(shell minikube service --url quarkus-microservice-service)/greetings | python -c "import json,sys;obj=json.load(sys.stdin);print obj['message'];"; sleep .5; done
+
+watch-k8s-pods:
+	watch kubectl get pods -l app=quarkus-microservice
